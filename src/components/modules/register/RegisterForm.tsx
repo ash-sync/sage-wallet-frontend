@@ -22,6 +22,8 @@ import { Input } from "@/components/ui/input"
 import { Link } from "react-router";
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import PasswordInput from "@/components/ui/password";
+
 
 
 
@@ -134,7 +136,7 @@ export function RegisterForm({
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="******" {...field} value={field.value || ""}/>
+                    <PasswordInput {...field}/>
                     </FormControl>
                      <FormMessage/>
                 </FormItem>
@@ -144,7 +146,7 @@ export function RegisterForm({
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="******" {...field} value={field.value || ""}/>
+                      <PasswordInput {...field}/>
                     </FormControl>
                      <FormMessage/>
                 </FormItem>

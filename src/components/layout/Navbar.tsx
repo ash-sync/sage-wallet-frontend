@@ -12,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link, useLocation } from "react-router";
+import { ModeToggle } from "./ModeToggle";
 
 // Navigation links array
 const navigationLinks = [
@@ -83,7 +84,10 @@ export default function Navbar() {
                     <NavigationMenu className="max-w-none *:w-full">
                       <NavigationMenuList className="flex-col items-start gap-1">
                         {navigationLinks.map((link) => (
-                          <NavigationMenuItem className="w-full" key={link.href}>
+                          <NavigationMenuItem
+                            className="w-full"
+                            key={link.href}
+                          >
                             <NavigationMenuLink
                               className={`
                                 w-full rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200
@@ -140,9 +144,10 @@ export default function Navbar() {
 
             {/* Right side - Sign In/Up Buttons */}
             <div className="flex items-center gap-3">
+              <ModeToggle />
               <Button
                 asChild
-                className=" py-5 border border-purple-500/50 bg-transparent text-white hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300"
+                className=" py-5 border border-purple-500/50  dark:text-white hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300"
                 size="sm"
                 variant="ghost"
               >

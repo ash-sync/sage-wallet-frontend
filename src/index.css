@@ -43,8 +43,9 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Custom colors from tailwind.config.ts */
-  --color-background: #070B1A;
-  --color-primary: #7C3AED;
+
+  --color-background: #070b1a;
+  --color-primary: #7c3aed;
 
   /* Custom shadow */
   --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.6);
@@ -52,14 +53,14 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #070B1A;
-  --foreground: oklch(0.985 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
   --text-foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #7C3AED;
+  --primary: #7c3aed;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -87,7 +88,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #070b1a;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -124,7 +125,9 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+  .dark {
+    body {
+      @apply bg-background text-foreground;
+    }
   }
 }
