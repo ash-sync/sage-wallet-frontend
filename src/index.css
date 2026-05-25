@@ -45,7 +45,7 @@
   /* Custom colors from tailwind.config.ts */
 
   --color-background: #070b1a;
-  --color-primary: #dadee8;
+  --color-primary: #f3f0ff;
   /* Custom shadow */
   --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.6);
 }

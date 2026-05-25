@@ -12,7 +12,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link, useLocation } from "react-router";
-import { ModeToggle } from "./ModeToggle";
 
 // Navigation links array
 const navigationLinks = [
@@ -31,14 +30,14 @@ export default function Navbar() {
   };
 
   return (
-    <header>
+    <header className="dark:bg-background ">
       {/* Glassmorphism background */}
-      <div className="mx-4 mt-4">
+      <div className="mx-4 mt-4 ">
         <div>
           {/* Purple neon glow at top */}
           <div className="absolute inset-x-4 -top-px h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
 
-          <div className="flex h-16 items-center justify-between gap-4 px-4 container mx-auto">
+          <div className="flex h-16  items-center justify-between gap-4 px-4 container mx-auto">
             {/* Left side - Logo & Mobile menu */}
             <div className="flex items-center gap-4">
               {/* Mobile menu trigger */}
@@ -116,8 +115,8 @@ export default function Navbar() {
             </div>
 
             {/* Center - Desktop Navigation - Centered Pill */}
-            <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-              <div className="relative rounded-full border dark:border-white/10 dark:bg-white/5 px-1 py-1">
+            <div className="hidden  md:flex absolute left-1/2 -translate-x-1/2">
+              <div className="relative rounded-full border dark:border-white/10 dark:bg-white/5 border-gray-100/20 bg-gray-50/25  px-1 py-1">
                 <NavigationMenu className="h-full *:h-full">
                   <NavigationMenuList className="h-full gap-1">
                     {navigationLinks.map((link) => (
@@ -128,7 +127,7 @@ export default function Navbar() {
                             ${
                               isActive(link.href)
                                 ? "bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.5)]"
-                                : "text-muted-foreground hover:text-white hover:bg-white/5"
+                                : "text-muted-foreground dark:hover:text-white hover:text-black dark:hover:bg-white/5 hover:bg-white/50"
                             }
                           `}
                         >
@@ -143,7 +142,6 @@ export default function Navbar() {
 
             {/* Right side - Sign In/Up Buttons */}
             <div className="flex items-center gap-3">
-              <ModeToggle />
               <Button
                 asChild
                 className=" py-5 border border-purple-500/50  dark:text-white hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300"

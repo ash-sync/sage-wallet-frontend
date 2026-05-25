@@ -1,7 +1,5 @@
 import { LoginForm } from "@/components/modules/login/LoginForm";
 
-
-
 export default function Login() {
   return (
     <div className="relative flex min-h-svh w-full items-center justify-center overflow-hidden p-6 md:p-10">
@@ -17,9 +15,9 @@ export default function Login() {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-sm">
+      <div className="relative z-10 w-full lg:max-w-lg max-w-sm ">
         {/* Logo area */}
-        <div className="mb-8 flex flex-col items-center">
+        <div className="mb-8 flex flex-col  items-center">
           <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-sm ring-4 ring-primary/10">
             <svg
               className="h-6 w-6 text-primary-foreground"
@@ -36,7 +34,9 @@ export default function Login() {
             </svg>
           </div>
           <h1 className="text-xl font-semibold text-foreground">Sage Wallet</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Secure wallet management</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Secure wallet management
+          </p>
         </div>
 
         {/* Glass card */}
@@ -45,5 +45,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }

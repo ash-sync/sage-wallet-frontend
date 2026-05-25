@@ -1,49 +1,9 @@
-// "use client";
-
-// import { MeshDistortMaterial, RoundedBox } from "@react-three/drei";
-// import { useFrame } from "@react-three/fiber";
-// import { useRef } from "react";
-// import * as THREE from "three";
-
-// export default function FloatingCard() {
-//   const ref = useRef<THREE.Mesh>(null!);
-
-//   useFrame((state) => {
-//     if (!ref.current) return;
-
-//     ref.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
-
-//     ref.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.3) * 0.1;
-//   });
-
-//   return (
-//     <group>
-//       {/* Main Card */}
-//       <RoundedBox ref={ref} args={[3.2, 2, 0.08]} radius={0.12} smoothness={4}>
-//         <MeshDistortMaterial
-//           color="#6d28d9"
-//           emissive="#7c3aed"
-//           emissiveIntensity={2}
-//           metalness={0.3}
-//           roughness={0.1}
-//           distort={0.15}
-//           speed={2}
-//         />
-//       </RoundedBox>
-//     </group>
-//   );
-// }
-
 "use client";
 
-import {
-  Float,
-  RoundedBox,
-  Text,
-  MeshTransmissionMaterial,
-} from "@react-three/drei";
+import { Float, RoundedBox, Text } from "@react-three/drei";
 
 import { useFrame } from "@react-three/fiber";
+
 import { useRef } from "react";
 
 import * as THREE from "three";
@@ -57,14 +17,14 @@ export default function FloatingCard() {
     // Smooth floating rotation
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      state.pointer.x * 0.3,
-      0.05,
+      state.pointer.x * 0.6,
+      0.08,
     );
 
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      -state.pointer.y * 0.2,
-      0.05,
+      -state.pointer.y * 0.6,
+      0.08,
     );
   });
 
@@ -72,8 +32,8 @@ export default function FloatingCard() {
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
       <group ref={groupRef}>
         {/* MAIN CARD */}
-        <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.18} smoothness={2}>
-          <MeshTransmissionMaterial
+        <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.05} smoothness={2}>
+          {/* <MeshTransmissionMaterial
             backside
             samples={6}
             resolution={256}
@@ -84,6 +44,12 @@ export default function FloatingCard() {
             distortionScale={0.2}
             temporalDistortion={0.2}
             color="#6d28d9"
+          /> */}
+          <meshPhysicalMaterial
+            color="#6d28d9"
+            metalness={0.4}
+            roughness={0.2}
+            clearcoat={1}
           />
         </RoundedBox>
 

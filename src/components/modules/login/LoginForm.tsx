@@ -51,7 +51,7 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="border-0 dark:bg-transparent bg-accent shadow-none">
+      <Card className="border-0 bg-transparent  shadow-none">
         <CardHeader>
           <CardTitle>Welcome back</CardTitle>
           <CardDescription>
@@ -106,7 +106,10 @@ export function LoginForm({
                 )}
               />
 
-              <Button type="submit" className="w-full text-foreground">
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white hover:from-purple-500 hover:to-purple-400 shadow-[0_0_25px_rgba(124,58,237,0.5)] hover:shadow-[0_0_35px_rgba(124,58,237,0.7)] transition-all duration-300 "
+              >
                 Sign in
               </Button>
             </form>
