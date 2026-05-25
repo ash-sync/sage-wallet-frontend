@@ -45,8 +45,7 @@
   /* Custom colors from tailwind.config.ts */
 
   --color-background: #070b1a;
-  --color-primary: #7c3aed;
-
+  --color-primary: #dadee8;
   /* Custom shadow */
   --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.6);
 }
@@ -128,6 +127,11 @@
   .dark {
     body {
       @apply bg-background text-foreground;
+    }
+  }
+  .light {
+    body {
+      @apply bg-primary;
     }
   }
 }

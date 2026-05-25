@@ -117,7 +117,7 @@ export default function Navbar() {
 
             {/* Center - Desktop Navigation - Centered Pill */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-              <div className="relative rounded-full border border-white/10 bg-white/5 px-1 py-1">
+              <div className="relative rounded-full border dark:border-white/10 dark:bg-white/5 px-1 py-1">
                 <NavigationMenu className="h-full *:h-full">
                   <NavigationMenuList className="h-full gap-1">
                     {navigationLinks.map((link) => (
@@ -131,9 +131,8 @@ export default function Navbar() {
                                 : "text-muted-foreground hover:text-white hover:bg-white/5"
                             }
                           `}
-                          href={link.href}
                         >
-                          {link.label}
+                          <Link to={link.href}>{link.label}</Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
                     ))}
