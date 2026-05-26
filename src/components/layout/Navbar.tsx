@@ -12,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link, useLocation } from "react-router";
+import { ModeToggle } from "./ModeToggle";
 
 // Navigation links array
 const navigationLinks = [
@@ -142,6 +143,7 @@ export default function Navbar() {
 
             {/* Right side - Sign In/Up Buttons */}
             <div className="flex items-center gap-3">
+              <ModeToggle />
               <Button
                 asChild
                 className=" py-5 border border-purple-500/50  dark:text-white hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300"

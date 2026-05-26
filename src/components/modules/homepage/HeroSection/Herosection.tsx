@@ -5,15 +5,24 @@ import Scene from "./Scene";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen overflow-hidden  text-white">
-      {/* Purple Glow Background */}
-      <div className="pointer-events-none absolute inset-0 dark:bg-[radial-gradient(circle_at_center,#7c3aed22,transparent_60%)] bg-[radial-gradient(circle_at_center,#6d28d9,transparent_43%)]" />
+    <section className="relative h-screen overflow-hidden text-white">
+      {/* Background Gradient */}
 
-      {/* Glow Line */}
-      <div className="absolute pointer-events-none bottom-32 left-1/2 h-[300px] w-[900px] -translate-x-1/2 rounded-full bg-purple-500/20 blur-3xl" />
+      <div className="pointer-events-none">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(155% 170% at 50% 10%, var(--background) 40%, rgba(168,85,247,0.2) 60%)",
+          }}
+        />
+      </div>
+      {/* Purple Glow */}
+      <div className="absolute left-1/2 top-[42%] h-[250px] w-[900px] -translate-x-1/2 rounded-full bg-purple-400/20 dark:bg-purple-500/20 blur-3xl" />
+      {/* Extra Ambient Glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.03] to-transparent dark:via-purple-500/[0.06]" />
 
       {/* 3D Scene */}
-
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

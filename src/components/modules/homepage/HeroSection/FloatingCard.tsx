@@ -1,8 +1,10 @@
 "use client";
 
+import { useTheme } from "@/hooks/useTheme";
 import { Float, RoundedBox, Text } from "@react-three/drei";
 
 import { useFrame } from "@react-three/fiber";
+import { useDrag } from "@use-gesture/react";
 
 import { useRef } from "react";
 
@@ -10,6 +12,11 @@ import * as THREE from "three";
 
 export default function FloatingCard() {
   const groupRef = useRef<THREE.Group>(null!);
+  const hovered = useRef(false);
+
+  const { theme } = useTheme();
+
+  const isDark = theme === "dark";
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -28,28 +35,50 @@ export default function FloatingCard() {
     );
   });
 
+  useFrame(() => {
+    if (!groupRef.current) return;
+
+    groupRef.current.position.lerp(
+      new THREE.Vector3(
+        groupRef.current.position.x,
+        groupRef.current.position.y,
+        0,
+      ),
+      0.1,
+    );
+  });
+
+  const bind = useDrag(({ offset: [x, y] }) => {
+    if (!groupRef.current) return;
+
+    groupRef.current.position.x = x / 200;
+    groupRef.current.position.y = -y / 200;
+  });
+
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-      <group ref={groupRef}>
+      <group
+        ref={groupRef}
+        onPointerOver={() => {
+          hovered.current = true;
+          document.body.style.cursor = "grab";
+        }}
+        onPointerOut={() => {
+          hovered.current = false;
+          document.body.style.cursor = "default";
+        }}
+        {...bind()}
+      >
         {/* MAIN CARD */}
-        <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.05} smoothness={2}>
-          {/* <MeshTransmissionMaterial
-            backside
-            samples={6}
-            resolution={256}
-            ior={1.5}
-            chromaticAberration={0.04}
-            anisotropy={0.1}
-            distortion={0.2}
-            distortionScale={0.2}
-            temporalDistortion={0.2}
-            color="#6d28d9"
-          /> */}
+        <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.08} smoothness={12}>
           <meshPhysicalMaterial
-            color="#6d28d9"
-            metalness={0.4}
-            roughness={0.2}
-            clearcoat={1}
+            color={isDark ? "#7c3aed" : "#3b145e"}
+            emissive={isDark ? "#7c3aed" : "#3b145e"}
+            emissiveIntensity={isDark ? 0.25 : 0.08}
+            metalness={0.1}
+            roughness={0.14}
+            clearcoat={0.15}
+            clearcoatRoughness={1}
           />
         </RoundedBox>
 
@@ -108,12 +137,12 @@ export default function FloatingCard() {
         </Text>
 
         {/* MASTERCARD LOGO */}
-        <mesh position={[-1.1, -0.35, 0.05]}>
+        <mesh position={[-1.1, -0.35, 0.06]}>
           <circleGeometry args={[0.16, 32]} />
-          <meshBasicMaterial color="#ef4444" transparent opacity={0.85} />
+          <meshBasicMaterial color="#ef4444" transparent opacity={2} />
         </mesh>
 
-        <mesh position={[-0.95, -0.35, 0.05]}>
+        <mesh position={[-0.96, -0.35, 0.05]}>
           <circleGeometry args={[0.16, 32]} />
           <meshBasicMaterial color="#facc15" transparent opacity={0.85} />
         </mesh>

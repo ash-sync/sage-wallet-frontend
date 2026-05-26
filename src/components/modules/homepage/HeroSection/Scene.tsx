@@ -5,8 +5,13 @@ import { Environment } from "@react-three/drei";
 
 import { ResponsiveCamera } from "./ResponsiveCamera";
 import { FloatingCardWrapper } from "./CardWrapper";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function Scene() {
+  const { theme } = useTheme();
+
+  const isDark = theme === "dark";
+
   return (
     <Canvas
       gl={{ antialias: true }}
@@ -18,7 +23,7 @@ export default function Scene() {
       <ambientLight intensity={8} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
 
-      <Environment preset="city" />
+      <Environment preset={isDark ? "city" : "dawn"} />
 
       {/* LEFT CARD */}
       <FloatingCardWrapper side="left" />

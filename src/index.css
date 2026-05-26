@@ -131,7 +131,7 @@
   }
   .light {
     body {
-      @apply bg-primary;
+      @apply bg-[#f4f3f8];
     }
   }
 }
