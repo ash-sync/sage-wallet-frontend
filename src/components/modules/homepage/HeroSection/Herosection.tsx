@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Scene from "./Scene";
+import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   return (
@@ -72,13 +73,13 @@ export default function HeroSection() {
           transition={{ delay: 0.5 }}
           className="mt-10 flex gap-4"
         >
-          <button className="rounded-xl bg-purple-600 px-6 py-3 font-medium transition hover:bg-purple-500">
+          <Button className="rounded-xl bg-purple-600 px-6 py-3 font-medium transition hover:bg-purple-500 text-white">
             Get Started
-          </button>
+          </Button>
 
-          <button className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-md transition hover:bg-white/10">
+          <Button className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-md transition hover:bg-white/10 text-muted-foreground">
             Watch Video
-          </button>
+          </Button>
         </motion.div>
       </div>
     </section>

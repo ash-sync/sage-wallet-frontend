@@ -72,7 +72,7 @@ export default function FloatingCard() {
         {/* MAIN CARD */}
         <RoundedBox args={[3.4, 2.1, 0.08]} radius={0.08} smoothness={12}>
           <meshPhysicalMaterial
-            color={isDark ? "#7c3aed" : "#3b145e"}
+            color={isDark ? "#3b145e" : "#3b145e"}
             emissive={isDark ? "#7c3aed" : "#3b145e"}
             emissiveIntensity={isDark ? 0.25 : 0.08}
             metalness={0.1}
