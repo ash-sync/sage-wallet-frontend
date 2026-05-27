@@ -74,8 +74,9 @@ export function RegisterForm({
     };
     try {
       await register(userInfo).unwrap();
+
       toast.success("User created successfully");
-      navigate("/", { state: data.email });
+      navigate("/");
     } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       toast.error(error as any);
@@ -156,7 +157,10 @@ export function RegisterForm({
                 )}
               />
 
-              <Button type="submit" className="w-full text-foreground">
+              <Button
+                type="submit"
+                className="w-full text-foreground dark:text-black"
+              >
                 Create Account
               </Button>
             </form>
