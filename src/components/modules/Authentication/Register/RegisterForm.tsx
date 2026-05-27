@@ -19,10 +19,12 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PasswordInput from "@/components/ui/password";
+import { useRegisterMutation } from "@/redux/features/auth/auth.api";
+import { toast } from "sonner";
 
 // Register schema
 
@@ -51,6 +53,9 @@ export function RegisterForm({
   className,
   ...props
 }: React.HtmlHTMLAttributes<HTMLDivElement>) {
+  const navigate = useNavigate();
+  const [register] = useRegisterMutation();
+
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -67,8 +72,14 @@ export function RegisterForm({
       email: data.email,
       password: data.password,
     };
-
-    console.log(userInfo);
+    try {
+      await register(userInfo).unwrap();
+      toast.success("User created successfully");
+      navigate("/", { state: data.email });
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      toast.error(error as any);
+    }
   };
 
   return (
