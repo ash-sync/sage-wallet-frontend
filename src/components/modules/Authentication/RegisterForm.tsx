@@ -75,12 +75,13 @@ export function RegisterForm({
     try {
       await register(userInfo).unwrap();
       toast.success("User created successfully");
-      navigate("/");
+      navigate("/verify", { state: data.email });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.data.message === "User Already Exist") {
         toast.error("User Already Exist");
       }
+      console.log(error);
     }
   };
 

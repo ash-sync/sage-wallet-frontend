@@ -83,12 +83,12 @@ export function LoginForm({
               <div className="flex items-center">
                 <FormLabel>Password</FormLabel>
 
-                <a
-                  href="#"
+                <Link
+                  to="forgot-password"
                   className="ml-auto text-xs dark:text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
                 >
                   Forgot password?
-                </a>
+                </Link>
               </div>
               <FormField
                 control={form.control}
