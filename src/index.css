@@ -45,22 +45,23 @@
   /* Custom colors from tailwind.config.ts */
 
   --color-background: #070b1a;
-  --color-primary: #f3f0ff;
+  --color-primary: oklch(26.452% 0.12708 307.635);
   /* Custom shadow */
   --shadow-glow: 0 0 40px rgba(124, 58, 237, 0.6);
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
+  --background: oklch(26.452% 0.12708 307.635);
+
+  --foreground: oklch(95.27% 0.00277 285.767);
   --text-foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
+  --card: oklch(74.689% 0.00341 15.864 / 0.514);
+  --card-foreground: oklch(98.232% 0.00855 16.584);
   --popover: oklch(0.145 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #7c3aed;
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #7329f3;
+  --primary-foreground: oklch(100% 0.00011 271.152);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -124,14 +125,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  :root {
+    body {
+      @apply bg-primary text-foreground;
+    }
+  }
   .dark {
     body {
       @apply bg-background text-foreground;
-    }
-  }
-  .light {
-    body {
-      @apply bg-[#f4f3f8];
     }
   }
 }

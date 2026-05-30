@@ -30,7 +30,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   // const navigate  = useNavigate()
   const form = useForm();
-  
+
   // const [login] = useLoginMutation
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -85,7 +85,7 @@ export function LoginForm({
 
                 <a
                   href="#"
-                  className="ml-auto text-xs text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                  className="ml-auto text-xs dark:text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
                 >
                   Forgot password?
                 </a>
@@ -153,7 +153,7 @@ export function LoginForm({
             Don&apos;t have an account?{" "}
             <Link
               to="/register"
-              className="text-primary underline-offset-4 hover:underline"
+              className="dark:text-primary text-purple-50 underline-offset-4 hover:underline"
             >
               Sign up
             </Link>

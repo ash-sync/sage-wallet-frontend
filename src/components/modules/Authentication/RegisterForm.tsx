@@ -74,12 +74,13 @@ export function RegisterForm({
     };
     try {
       await register(userInfo).unwrap();
-
       toast.success("User created successfully");
       navigate("/");
-    } catch (error) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      toast.error(error as any);
+    } catch (error: any) {
+      if (error.data.message === "User Already Exist") {
+        toast.error("User Already Exist");
+      }
     }
   };
 
@@ -159,7 +160,7 @@ export function RegisterForm({
 
               <Button
                 type="submit"
-                className="w-full text-foreground dark:text-black"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white hover:from-purple-500 hover:to-purple-400 shadow-[0_0_25px_rgba(124,58,237,0.5)] hover:shadow-[0_0_35px_rgba(124,58,237,0.7)] transition-all duration-300"
               >
                 Create Account
               </Button>

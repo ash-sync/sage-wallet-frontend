@@ -1,9 +1,11 @@
 import { LoginForm } from "@/components/modules/Authentication/LoginForm";
+import AuthCoinRain from "@/components/modules/Three/CoinRain";
 
 export default function Login() {
   return (
     <div className="relative flex min-h-svh w-full items-center justify-center overflow-hidden p-6 md:p-10">
       {/* Subtle grid pattern */}
+      <AuthCoinRain />
       <div
         className="absolute inset-0 z-0"
         style={{

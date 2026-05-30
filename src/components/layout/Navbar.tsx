@@ -31,9 +31,9 @@ export default function Navbar() {
   };
 
   return (
-    <header className="dark:bg-background ">
+    <header className="dark:bg-background mb-2">
       {/* Glassmorphism background */}
-      <div className="mx-4 mt-4 ">
+      <div className="mx-4 mt-4 w-full ">
         <div>
           {/* Purple neon glow at top */}
           <div className="absolute inset-x-4 -top-px h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
@@ -110,9 +110,9 @@ export default function Navbar() {
               </div>
 
               {/* Logo */}
-              <a className="flex items-center" href="/">
+              <Link to="/" className="flex items-center">
                 <Logo />
-              </a>
+              </Link>
             </div>
 
             {/* Center - Desktop Navigation - Centered Pill */}
@@ -128,7 +128,7 @@ export default function Navbar() {
                             ${
                               isActive(link.href)
                                 ? "bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.5)]"
-                                : "text-muted-foreground dark:hover:text-white hover:text-black dark:hover:bg-white/5 hover:bg-white/50"
+                                : " dark:hover:text-white hover:text-black dark:hover:bg-white/5 hover:bg-white/50"
                             }
                           `}
                         >
