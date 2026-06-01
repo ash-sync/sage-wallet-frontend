@@ -20,7 +20,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router";
-import z from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PasswordInput from "@/components/ui/password";
 import { useRegisterMutation } from "@/redux/features/auth/auth.api";

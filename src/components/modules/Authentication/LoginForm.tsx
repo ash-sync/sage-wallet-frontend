@@ -22,32 +22,34 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router";
 
-// import { useNavigate } from "react-router"
+import { useNavigate } from "react-router";
+import { useLoginMutation } from "@/redux/features/auth/auth.api";
+import { toast } from "sonner";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  // const navigate  = useNavigate()
+  const navigate = useNavigate();
   const form = useForm();
 
-  // const [login] = useLoginMutation
+  const [login] = useLoginMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-
-    //  try {
-    //   const res = await login(data).unwrap();
-    //   console.log(res)
-    //  } catch (error) {
-    //   console.log(error)
-
-    //   if (error.status === 401) {
-    //     toast.error("Your account is not verified");
-    //     navigate
-    //   }
-
-    //  }
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const res = await login(data).unwrap();
+      console.log(res);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log(error);
+      if (error.data.message === "Password does not match") {
+        toast.error("Invalid credentials");
+      }
+      if (error.data.message === "User is not verified") {
+        toast.error("Your account is not verified");
+        navigate("/verify", { state: data.email });
+      }
+    }
   };
 
   return (

@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  Form,
   FormControl,
   FormDescription,
   FormField,
@@ -20,21 +21,27 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useSendOtpMutation } from "@/redux/features/auth/auth.api";
+import { cn } from "@/lib/utils";
+import {
+  useSendOtpMutation,
+  useVerifyOtpMutation,
+} from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dot } from "lucide-react";
-import { useState } from "react";
-import { Form, useForm } from "react-hook-form";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router";
 import { toast } from "sonner";
 import z from "zod";
 
 export default function Verify() {
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [email] = useState(location.state);
   const [confirmed, setConfirmed] = useState(false);
   const [sendOtp] = useSendOtpMutation();
+  const [verifyOtp] = useVerifyOtpMutation();
+  const [timer, setTimer] = useState(60);
 
   const FormSchema = z.object({
     pin: z.string().min(6, {
@@ -58,15 +65,48 @@ export default function Verify() {
       if (res.success) {
         toast.success("OTP Sent", { id: toastId });
         setConfirmed(true);
+        setTimer(60);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const onSubmit = (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const toastId = toast.loading("Verifying OTP");
+    const userInfo = {
+      email,
+      otp: data.pin,
+    };
+
+    try {
+      const res = await verifyOtp(userInfo).unwrap();
+
+      if (res.success) {
+        toast.success("OTP Verified", { id: toastId });
+        setConfirmed(true);
+        navigate("/", { state: email });
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.message === "Invalid OTP") {
+        toast.error("Invalid OTP", { id: toastId });
+      } else {
+        toast.error("Something went wrong", { id: toastId });
+      }
+    }
   };
+
+  useEffect(() => {
+    if (!email || !confirm) {
+      return;
+    }
+    const timerId = setInterval(() => {
+      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [email]);
 
   return (
     <div className="grid place-content-center h-screen">
@@ -115,7 +155,19 @@ export default function Verify() {
                         </InputOTP>
                       </FormControl>
                       <FormDescription>
-                        <Button>Resent OPT: </Button> {/* {timer} */}
+                        <Button
+                          type="button"
+                          variant="link"
+                          disabled={timer !== 0}
+                          onClick={handleSendOtp}
+                          className={cn("p-0 m-0", {
+                            "cursor-pointer": timer === 0,
+                            "text-gray-500": timer !== 0,
+                          })}
+                        >
+                          Resent OPT:{" "}
+                        </Button>{" "}
+                        {timer}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
