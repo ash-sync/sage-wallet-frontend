@@ -18,6 +18,7 @@ const sponsors: React.ComponentType<React.SVGProps<SVGSVGElement>>[] = [
       </text>
     </svg>
   ),
+
   // 2. CoinNest
   (props) => (
     <svg
