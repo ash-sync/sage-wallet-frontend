@@ -1,4 +1,3 @@
-import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -12,7 +11,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link, useLocation } from "react-router";
-import { ModeToggle } from "./ModeToggle";
+
+import { CloudCheck } from "lucide-react";
 
 // Navigation links array
 const navigationLinks = [
@@ -111,7 +111,12 @@ export default function Navbar() {
 
               {/* Logo */}
               <Link to="/" className="flex items-center">
-                <Logo />
+                <div className="flex items-center gap-2 mb-6">
+                  <CloudCheck className="w-8 h-8 text-indigo-400" />
+                  <span className="text-2xl font-bold text-indigo-400 tracking-tight">
+                    Sage Wallet
+                  </span>
+                </div>
               </Link>
             </div>
 
@@ -143,7 +148,7 @@ export default function Navbar() {
 
             {/* Right side - Sign In/Up Buttons */}
             <div className="flex items-center gap-3">
-              <ModeToggle />
+              {/* <ModeToggle /> */}
               <Button
                 asChild
                 className=" py-5 border border-purple-500/50  dark:text-white hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300"

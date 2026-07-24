@@ -1,108 +1,42 @@
 import React from "react";
+import { Gem, Disc, Hexagon, Sparkles, Coins } from "lucide-react";
 
-const sponsors: React.ComponentType<React.SVGProps<SVGSVGElement>>[] = [
-  // 1. ChainPocket
-  (props) => (
-    <svg
-      width="140"
-      height="40"
-      viewBox="0 0 140 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path d="M12 14H28V26H12Z" stroke="currentColor" strokeWidth="2" />
-      <path d="M16 10V14M24 10V14" stroke="currentColor" strokeWidth="2" />
-      <text x="40" y="25" fill="currentColor" fontSize="16" fontFamily="Arial">
-        ChainPocket
-      </text>
-    </svg>
-  ),
+interface Partner {
+  id: string;
+  name: string;
+  icon: React.ReactNode;
+}
 
-  // 2. CoinNest
-  (props) => (
-    <svg
-      width="140"
-      height="40"
-      viewBox="0 0 140 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="M10 20C10 14 14 10 20 10C26 10 30 14 30 20C30 26 26 30 20 30C14 30 10 26 10 20Z"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path d="M16 20H24" stroke="currentColor" strokeWidth="2" />
-      <text x="40" y="25" fill="currentColor" fontSize="16" fontFamily="Arial">
-        CoinNest
-      </text>
-    </svg>
-  ),
-  // 3. VaultPay
-  (props) => (
-    <svg
-      width="140"
-      height="40"
-      viewBox="0 0 140 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <rect
-        x="10"
-        y="10"
-        width="20"
-        height="20"
-        rx="4"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <circle cx="25" cy="20" r="2" fill="currentColor" />
-      <text x="40" y="25" fill="currentColor" fontSize="16" fontFamily="Arial">
-        VaultPay
-      </text>
-    </svg>
-  ),
-  // 4. NovaWallet
-  (props) => (
-    <svg
-      width="140"
-      height="40"
-      viewBox="0 0 140 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <circle cx="20" cy="20" r="10" stroke="currentColor" strokeWidth="2" />
-      <path d="M15 20H25" stroke="currentColor" strokeWidth="2" />
-      <text x="40" y="25" fill="currentColor" fontSize="16" fontFamily="Arial">
-        NovaWallet
-      </text>
-    </svg>
-  ),
+const LOGOS: Partner[] = [
+  { id: "1", name: "NOVA", icon: <Coins className="w-6 h-6" /> },
+  { id: "2", name: "PRISM", icon: <Gem className="w-6 h-6" /> },
+  { id: "3", name: "ORBIT", icon: <Disc className="w-6 h-6" /> },
+  { id: "4", name: "NEXUS", icon: <Hexagon className="w-6 h-6" /> },
+  { id: "5", name: "ZENITH", icon: <Sparkles className="w-6 h-6" /> },
 ];
 
-export function SponsorSection() {
+export const SponsorSection: React.FC = () => {
   return (
-    <section className="w-full">
-      <div className="mx-auto border border-white/10 bg-gradient-to-r from-[#19051b7e] via-[#500f5860] to-[#22072d71] px-8 py-6">
-        <div className="flex flex-col mt-2 gap-6 lg:items-center md:flex-row md:justify-between lg:justify-center">
-          <span className="text-lg font-medium text-white">Trusted by</span>
+    <section className="py-16 border-y border-white/10 bg-slate-900/50 backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <p className="text-center text-xs font-semibold text-slate-400 uppercase tracking-[0.3em] mb-12">
+          Trusted by global industry leaders
+        </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-10">
-            {sponsors.map((SponsorLogo, index) => (
-              <div
-                key={index}
-                className="text-white/60 transition-all duration-300 hover:text-purple-400 hover:scale-105"
-              >
-                <SponsorLogo className="h-8 w-auto object-contain" />
-              </div>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+          {LOGOS.map((logo) => (
+            <div
+              key={logo.id}
+              className="flex items-center gap-2 text-2xl font-bold text-white tracking-wider"
+            >
+              {logo.icon}
+              <span>{logo.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default SponsorSection;
